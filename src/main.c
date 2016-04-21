@@ -1,0 +1,38 @@
+#include <stdio.h>
+#include <stdlib.h>
+/*
+  Un programa sencillo para seguir la evolucion
+  dinamica de un conjunto de N masas puntuales.
+*/
+
+int main(int argc, char **argv){
+  int i=0;
+  double *p=NULL;
+  double *v=NULL;
+  double *a=NULL;
+  double time_step=0;
+  double total_time=0;
+  int n_steps;
+
+  /*inicializacion*/
+  recibe_input(argc, argv, &N, &epsilon);
+  p = crea_vector(N);
+  v = crea_vector(N);
+  a = crea_vector(N);
+  posiciones_iniciales(p, N);
+  escribe_estado(p,v,i);
+
+  /*tiempos caracteristicos*/
+  total_time = calcula_tiempo_total(N);
+  time_step = calcula_time_step(N);
+  n_steps = (int)(total_time/time_step);
+  
+  /*evolucion temporal*/
+  for(i=0;i<n_steps;i++){
+    calcula_aceleracion(p, v, a, N, epsilon);
+    actualiza_timestep(p, v, a, N);
+  }
+  escribe_estado(p,v,i)
+  return 0;
+}
+
