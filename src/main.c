@@ -6,13 +6,12 @@
 */
 
 int main(int argc, char **argv){
-  int i=0;
+  int i=0, N=0;
   double *p=NULL;
   double *v=NULL;
   double *a=NULL;
-  double time_step=0;
-  double total_time=0;
-  int n_steps;
+  double time_step=0, total_time=0, epsilon=0;
+  int n_steps=0;
 
   /*inicializacion*/
   recibe_input(argc, argv, &N, &epsilon);
