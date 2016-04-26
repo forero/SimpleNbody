@@ -22,3 +22,27 @@ double calcula_time_step(int n, double epsilon){
   t_dyn = 1.0/sqrt(G_GRAV * rho);
   return t_dyn;
 }
+
+void calcula_aceleracion(double *p, double *v, double *a, int n, double epsilon){
+  int i,j,k;
+  double delta, delta_total;
+  for(i=0;i<n;i++){
+    for(k=0;k<3;k++){
+      a[i*3 + k] = 0.0;
+    }
+    for(j=0;j<n;j++){
+      if(i!=j){
+	delta_total = 0.0;
+	for(k=0;k<3;k++){
+	  delta_total += pow((p[i*3 + k] - p[j*3 + k]),2);
+	}
+	for(k=0;k<3;k++){
+	  delta = p[i*3 + k] - p[j*3 + k]; 
+	  a[i*3 + k] += -G_GRAV * delta 
+	    / pow((delta_total + pow(epsilon,2)), 3.0/2.0);
+	}
+      }
+    }
+  }
+}
+

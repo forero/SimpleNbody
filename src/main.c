@@ -31,13 +31,13 @@ int main(int argc, char **argv){
   fprintf(stderr, "tiempo total: %f time_step: %f n_steps %d\n", 
 	  total_time, time_step, n_steps);
   //evolucion temporal
-  /*
+  
   for(i=0;i<n_steps;i++){
     calcula_aceleracion(p, v, a, N, epsilon);
-    actualiza_timestep(p, v, a, N);
+    //   actualiza_timestep(p, v, a, N);
   }
-  escribe_estado(p, v,N, i)
-  */
+  escribe_estado(p, v,N, i);
+ 
   return 0;
 }
 
