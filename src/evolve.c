@@ -23,6 +23,22 @@ double calcula_time_step(int n, double epsilon){
   return t_dyn;
 }
 
+void calcula_energia(double *p, double *v, double *U, double *K, int n){
+  int i, j, k;
+  double delta_total;
+  for(i=0;i<n;i++){
+    K[i] = 0.5 * pow(v[i],2.0);
+    U[i] = 0.0;
+    for(j=0;j<n;j++){
+      delta_total = 0.0;
+      for(k=0;k<3;k++){
+	delta_total += pow((p[i*3 + k] - p[j*3 + k]),2);
+      }      
+      U[i] = -G_GRAV/sqrt(delta_total);
+    }
+  }
+}
+
 void calcula_aceleracion(double *p, double *v, double *a, int n, double epsilon){
   int i,j,k;
   double delta, delta_total;

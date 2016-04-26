@@ -12,18 +12,17 @@ void recibe_input(int argc, char **argv, int *n, double *e){
   *e = atof(argv[2]);
 }
 
+
 double *crea_vector(int n){
   double *v;
   int i;
-  if(!(v = malloc(3 * n * sizeof(double)))){
+  if(!(v = malloc(n * sizeof(double)))){
     fprintf(stderr, "Problem with memory allocation\n");
     exit(1);
   }
 
   for(i=0;i < n;i++){
-    v[3*i + 0] = 0.0; 
-    v[3*i + 1] = 0.0; 
-    v[3*i + 2] = 0.0; 
+    v[i] = 0.0;
   }
   return v;
 }
@@ -45,7 +44,7 @@ void posiciones_iniciales(double *p, int n){
   }
 }
 
-void escribe_estado(double *x, double *y, int n, int id){
+void escribe_estado(double *x, double *y, double *U, double *K, int n, int id){
   FILE *out;
   char filename[512];
   int i;
@@ -55,9 +54,9 @@ void escribe_estado(double *x, double *y, int n, int id){
     exit(0);
   }
   for (i=0; i<n ; i++){
-    fprintf(out, "%f %f %f %f %f %f\n", 
+    fprintf(out, "%f %f %f %f %f %f %f %f\n", 
 	    x[3*i +0], x[3*i +1], x[3*i +2],
-	    y[3*i +0], y[3*i +1], y[3*i +2]);	    
+	    y[3*i +0], y[3*i +1], y[3*i +2], U[i], K[i]);	    
   }
 
   fclose(out);

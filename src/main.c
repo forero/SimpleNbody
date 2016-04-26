@@ -12,16 +12,21 @@ int main(int argc, char **argv){
   double *p=NULL;
   double *v=NULL;
   double *a=NULL;
+  double *U=NULL;
+  double *K=NULL;
   double time_step=0, total_time=0, epsilon=0;
   int n_steps=0;
 
   /*inicializacion*/
   recibe_input(argc, argv, &N, &epsilon);
-  p = crea_vector(N);
-  v = crea_vector(N);
-  a = crea_vector(N);
+  p = crea_vector(3*N);
+  v = crea_vector(3*N);
+  a = crea_vector(3*N);
+  U = crea_vector(N);
+  K = crea_vector(N);
   posiciones_iniciales(p, N);
-  escribe_estado(p,v,N,i);
+  calcula_energia(p, v, U, K, N);
+  escribe_estado(p, v, U, K, N, i);
 
   
   // tiempos caracteristicos 
@@ -39,8 +44,9 @@ int main(int argc, char **argv){
     calcula_aceleracion(p, v, a, N, epsilon);
     kick(p, v, a, N, time_step);  
   }
-  escribe_estado(p, v,N, i);
- 
+  calcula_energia(p, v, U, K, N);
+  escribe_estado(p, v, U, K, N, i);
+  
   return 0;
 }
 
