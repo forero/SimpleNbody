@@ -46,3 +46,22 @@ void calcula_aceleracion(double *p, double *v, double *a, int n, double epsilon)
   }
 }
 
+
+void  kick(double *p, double *v, double *a, int n, double delta_t){
+  int i,k;
+  for(i=0;i<n;i++){
+    for(k=0;k<3;k++){
+      v[i*3 + k] += a[i*3 + k] * delta_t;
+    }
+  }
+}  
+
+void  drift(double *p, double *v, double *a, int n, double delta_t){
+  int i,k;
+  for(i=0;i<n;i++){
+    for(k=0;k<3;k++){
+      p[i*3 + k] += v[i*3 + k] * delta_t;
+    }
+  }
+}  
+
