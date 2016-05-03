@@ -54,7 +54,7 @@ void escribe_estado(double *x, double *y, double *U, double *K, int n, int id){
     exit(0);
   }
   for (i=0; i<n ; i++){
-    fprintf(out, "%f %f %f %f %f %f %f %f\n", 
+    fprintf(out, "%e %e %e %e %e %e %e %e\n", 
 	    x[3*i +0], x[3*i +1], x[3*i +2],
 	    y[3*i +0], y[3*i +1], y[3*i +2], U[i], K[i]);	    
   }

@@ -43,9 +43,10 @@ int main(int argc, char **argv){
     drift(p, v, a, N, time_step);  
     calcula_aceleracion(p, v, a, N, epsilon);
     kick(p, v, a, N, time_step);  
+
   }
   calcula_energia(p, v, U, K, N);
-  escribe_estado(p, v, U, K, N, i);
+  escribe_estado(p, v, U, K, N, i);    
   
   return 0;
 }
